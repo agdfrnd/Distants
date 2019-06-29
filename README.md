@@ -13,6 +13,8 @@ My intent is for the full piece to be 60 minutes long, but rendering the piece t
 The `render` function in `render_video.py` generates an animation showing which objects are sounding as the piece progresses, but this display could be a lot clearer: https://youtu.be/avZkv_wdZDY 
 Currently all points and labels look the same. I would like to change either the points or the labels or both to visualize the pitch, amplitude, and/or eccentricity of each object, to make it easier to tell which sound corresponds to which object. Also, the audio has to be manually added to the video because I haven't figured out how to make ffmpeg do it from matplotlib.
 
+Osculating elements for Neptune, from NASA's HORIZONS web service, are hardcoded, because the alternative is Telnet, and I haven't figured out how to automate that.
+
 ## Credit Where Credit's Due
 * This research has made use of data and/or services provided by the International Astronomical Union's Minor Planet Center.
     * namely: https://www.minorplanetcenter.net/iau/MPCORB/Distant.txt (initially)
@@ -24,7 +26,6 @@ Currently all points and labels look the same. I would like to change either the
 ## References
 * Giorgini, J.D., Yeomans, D.K., Chamberlin, A.B., Chodas, P.W., Jacobson, R.A., Keesey, M.S., Lieske, J.H., Ostro, S.J., Standish, E.M., Wimberly, R.N., "JPL's On-Line Solar System Data Service", Bulletin of the American Astronomical Society, Vol 28, No. 3, p. 1158, 1996.
     * HORIZONS documentation. Available at [ftp://ssd.jpl.nasa.gov/pub/ssd/Horizons_doc.pdf](ftp://ssd.jpl.nasa.gov/pub/ssd/Horizons_doc.pdf). Accessed 23 January 2018.
-* Knezevic, Z. and Milani, A. 2017. Synthetic proper elements of trans-Neptunian objects. AstDyS-2. Available at http://hamilton.dm.unipi.it/astdys2/index.php?pc=5. Accessed 7 February 2018.
 * The Math Forum. 2001. "Julian to Calendar Date Conversion". Available at http://mathforum.org/library/drmath/view/51907.html. Accessed 23 January 2018.
     * Meeus, Jean. 1979. "Astronomical Formulae for Calculators". Cited in ibid.
 * Tatum, J.B. 2017. Celestial Mechanics. Available at http://astrowww.phys.uvic.ca/~tatum/celmechs.html. Accessed 06 February 2018.
