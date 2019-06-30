@@ -10,10 +10,9 @@ The gist for these versions is for each distant object to generate a sound-event
 ## Future Work
 My intent is for the full piece to be 60 minutes long, but rendering the piece takes an extravagantly long time even at the 10x "abridged" version this code currently generates. Most of this time is spent calculating the (exponential) amplitude envelopes for every sound-event. It might be better to quantize the durations and asymmetries into a limited number of categories and generate a lookup table (or cache them, so as not to calculate unused combinations at all).
 
-The `render` function in `render_video.py` generates an animation showing which objects are sounding as the piece progresses, but this display could be a lot clearer: https://youtu.be/avZkv_wdZDY 
-Currently all points and labels look the same. I would like to change either the points or the labels or both to visualize the pitch, amplitude, and/or eccentricity of each object, to make it easier to tell which sound corresponds to which object. Also, the audio has to be manually added to the video because I haven't figured out how to make ffmpeg do it from matplotlib.
-
-Osculating elements for Neptune, from NASA's HORIZONS web service, are hardcoded, because the alternative is Telnet, and I haven't figured out how to automate that.
+The `render` function in `render_video.py` generates an animation showing which objects are sounding as the piece progresses, but this display could be a lot clearer: https://youtu.be/DTzQpp7KCMo 
+Only objects with absolute magnitude less than 6 are labeled, i.e. the loudest 300 or so.
+Currently all points and labels look the same. I would like to change either the points or the labels or both to visualize the pitch, amplitude, and/or eccentricity of each object, to make it easier to tell which sound corresponds to which object.
 
 ## Credit Where Credit's Due
 * This research has made use of data and/or services provided by the International Astronomical Union's Minor Planet Center.
