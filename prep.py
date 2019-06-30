@@ -415,7 +415,7 @@ def time_from_lon(lon, wave_length):
 # TODO: possibly factor all of the above core functions out from the below scriptier functions
 
 
-def fetch(datestamp):
+def fetch(datestamp=None):
     """
     fetch: read the MPC's distant.txt file, downloading if not locally present
 
@@ -426,21 +426,26 @@ def fetch(datestamp):
     import urllib.request
     import urllib.error
 
-    currents_filename = "distant.{}.txt".format(datestamp)
-
-    try:
+    if datestamp is not None:
+        currents_filename = "distant.{}.txt".format(datestamp)
         currents_fd = open(currents_filename, 'r')
         currents_data: list = currents_fd.readlines()
         currents_fd.close()
-    except FileNotFoundError:
-        print("fetching today's distant.txt from the Minor Planet Center...")
-        mpc_http_response = urllib.request.urlopen("https://www.minorplanetcenter.net/iau/ECS/MPCAT/current/distant.txt")
-        if mpc_http_response.code != 200:
-            raise urllib.error.HTTPError
-        currents_data = mpc_http_response.read()
-        currents_fd = open(currents_filename, 'w')
-        currents_fd.writelines(currents_data)
-        currents_fd.close()
+    else:
+        datestamp = dt.date.today().strftime("%Y%m%d")
+        currents_filename = "distant.{}.txt".format(datestamp)
+        try:
+            currents_fd = open(currents_filename, 'r')
+            currents_data: list = currents_fd.readlines()
+            currents_fd.close()
+        except FileNotFoundError:
+            print("fetching today's distant.txt from the Minor Planet Center...")
+            mpc_http_response = urllib.request.urlopen("https://www.minorplanetcenter.net/iau/ECS/MPCAT/current/distant.txt")
+            if mpc_http_response.code != 200:
+                raise urllib.error.HTTPError
+            currents_data = mpc_http_response.read().decode('utf-8')
+            with open(currents_filename, 'w') as currents_fd:
+                currents_fd.write(currents_data)
 
     return currents_data
 
