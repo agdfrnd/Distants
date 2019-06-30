@@ -443,9 +443,9 @@ def fetch(datestamp=None):
             mpc_http_response = urllib.request.urlopen("https://www.minorplanetcenter.net/iau/ECS/MPCAT/current/distant.txt")
             if mpc_http_response.code != 200:
                 raise urllib.error.HTTPError
-            currents_data = mpc_http_response.read().decode('utf-8')
+            currents_data = mpc_http_response.read().decode('utf-8').splitlines()
             with open(currents_filename, 'w') as currents_fd:
-                currents_fd.write(currents_data)
+                currents_fd.writelines(currents_data)
 
     return currents_data
 
