@@ -74,7 +74,9 @@ def render(dist_data, datestamp):
     for lon in lon_list:
         line, = ax.plot([lon, lon], [-90, 90], 'r', alpha=0.4)
         annos = [dist['anno'] for dist in vid_data
-                 if dist['lon_on'] <= lon < dist['lon_off']
+                 if (dist['lon_on'] <= lon < dist['lon_off']
+                     or dist['lon_on']+360 <= lon < dist['lon_off']+360
+                     or dist['lon_on']-360 <= lon < dist['lon_off']-360)
                  ]
         vis_anno_count += len(annos)
         cels.append([line] + annos)
